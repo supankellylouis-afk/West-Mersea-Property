@@ -542,8 +542,9 @@ const Booking = (() => {
     const termsClose   = document.getElementById('terms-modal-close');
     const termsLink    = document.getElementById('terms-link');
     const footerTerms  = document.getElementById('footer-terms-link');
+    const rulesTerms   = document.getElementById('rules-terms-link');
 
-    [termsLink, footerTerms].forEach(el => {
+    [termsLink, footerTerms, rulesTerms].forEach(el => {
       if (el) el.addEventListener('click', e => {
         e.preventDefault();
         termsOverlay.classList.add('open');

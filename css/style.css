@@ -1029,6 +1029,37 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .terms-body p { font-size: .88rem; color: var(--ink-light); }
 
 /* ============================================================
+   HOUSE RULES
+   ============================================================ */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--sand);
+}
+.rule-card {
+  background: var(--white);
+  padding: 32px 26px;
+  transition: background .3s;
+}
+.rule-card:hover { background: var(--cream); }
+.rule-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.rule-icon svg { width: 100%; height: 100%; }
+.rule-card h3 {
+  font-family: var(--ff-serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: .5rem;
+}
+.rule-card p { font-size: .85rem; color: var(--ink-light); line-height: 1.65; }
+
+/* ============================================================
    FINE PRINT
    ============================================================ */
 .fine-print-list {
@@ -1250,6 +1281,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   .main-nav { display: none; }
   .hamburger { display: flex; }
   .features-grid { grid-template-columns: 1fr 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .gallery-item.large { grid-row: span 1; }
   .booking-widget { grid-template-columns: 1fr; }
@@ -1267,6 +1299,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   .container { padding: 0 24px; }
   .header-inner { padding: 0 24px; }
   .features-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr; }
   .intro-strip { flex-wrap: wrap; gap: 20px; }
   .strip-divider { display: none; }
