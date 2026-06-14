@@ -72,27 +72,12 @@ const Booking = (() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
   }
 
-  /* Pre-seed some existing OTA bookings for demo */
-  function seedDemoBookings() {
-    const existing = loadBookings();
-    if (existing.length === 0) {
-      const today = new Date();
-      const y = today.getFullYear();
-      const demos = [
-        { checkIn: `${y}-07-04`, checkOut: `${y}-07-11`, source: 'Airbnb', ref: 'AIR-DEMO-001' },
-        { checkIn: `${y}-07-18`, checkOut: `${y}-07-25`, source: 'Booking.com', ref: 'BDC-DEMO-002' },
-        { checkIn: `${y}-08-01`, checkOut: `${y}-08-08`, source: 'VRBO', ref: 'VRB-DEMO-003' },
-        { checkIn: `${y}-08-15`, checkOut: `${y}-08-22`, source: 'Direct', ref: 'DIR-DEMO-004' },
-        { checkIn: `${y}-09-12`, checkOut: `${y}-09-15`, source: 'Booking.com', ref: 'BDC-DEMO-005' },
-        { checkIn: `${y+1}-02-13`, checkOut: `${y+1}-02-17`, source: 'Airbnb', ref: 'AIR-DEMO-006' },
-      ];
-      saveBookings(demos);
-    }
-  }
-
-  /* Build set of all booked date strings */
+  /* Build set of all booked date strings — direct bookings made
+     through this site (localStorage) plus OTA bookings shared via
+     ota-bookings.js */
   function buildBookedSet() {
-    const bookings = loadBookings();
+    const otaBookings = typeof OTA_BOOKINGS !== 'undefined' ? OTA_BOOKINGS : [];
+    const bookings = [...otaBookings, ...loadBookings()];
     const set = new Set();
     bookings.forEach(b => {
       let d = ymdToDate(b.checkIn);
@@ -208,7 +193,7 @@ const Booking = (() => {
       if (!isPast && !isBooked) {
         el.addEventListener('click',      () => handleDayClick(date));
         el.addEventListener('mouseenter', () => handleDayHover(date));
-        el.addEventListener('mouseleave', () => { hoverDate = null; renderCalendar(); });
+        el.addEventListener('mouseleave', () => { hoverDate = null; updateRangePreview(); });
       }
 
       daysEl.appendChild(el);
@@ -256,8 +241,22 @@ const Booking = (() => {
   }
 
   function handleDayHover(date) {
+    if (!checkinDate || checkoutDate) return;
     hoverDate = date;
-    renderCalendar();
+    updateRangePreview();
+  }
+
+  /* Update the in-range highlight without rebuilding the whole
+     calendar (avoids destabilising click targets on hover) */
+  function updateRangePreview() {
+    document.querySelectorAll('.cal-day.in-range').forEach(el => el.classList.remove('in-range'));
+    if (!checkinDate || checkoutDate || !hoverDate) return;
+    const lo = checkinDate < hoverDate ? checkinDate : hoverDate;
+    const hi = checkinDate < hoverDate ? hoverDate   : checkinDate;
+    document.querySelectorAll('.cal-day:not(.empty)').forEach(el => {
+      const d = ymdToDate(el.dataset.date);
+      if (d > lo && d < hi) el.classList.add('in-range');
+    });
   }
 
   /* ---- Summary & pricing ---- */
@@ -474,7 +473,6 @@ const Booking = (() => {
     viewYear  = now.getFullYear();
     viewMonth = now.getMonth();
 
-    seedDemoBookings();
     bookedSet = buildBookedSet();
     renderCalendar();
     updateSummary();
