@@ -35,4 +35,3 @@ jobs:
           publish_dir: .
           destination_dir: ${{ steps.dest.outputs.dir }}
           keep_files: true
-          cname: ${{ github.ref_name == 'main' && 'merseaislandretreat.co.uk' || '' }}
