@@ -248,6 +248,33 @@ body.book-page {
 
 .hidden { display: none; }
 
+/* ---- Confirmation page ---- */
+.confirm-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+.confirm-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+.confirm-card { text-align: left; }
+.confirm-loading,
+.confirm-error {
+  text-align: center;
+  color: var(--ink-light);
+  padding: 24px 0;
+}
+.confirm-error { color: #a33; }
+
 /* ---- Responsive ---- */
 @media (max-width: 860px) {
   .book-wrap { grid-template-columns: 1fr; }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed — Mersea Island Retreat</title>
+  <meta name="description" content="Your Mersea Island Retreat booking is confirmed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/book.css" />
+</head>
+<body class="book-page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="book-header">
+    <div class="book-header-inner">
+      <a href="index.html" class="book-logo">
+        <span class="book-logo-mark">2CR</span>
+        <span class="book-logo-text">Mersea Island Retreat</span>
+      </a>
+      <a href="index.html" class="book-back-link">&larr; Back to property</a>
+    </div>
+  </header>
+
+  <!-- ============ INTRO ============ -->
+  <div class="book-intro">
+    <div class="confirm-icon">&#10003;</div>
+    <p class="eyebrow">Booking Confirmed</p>
+    <h1>You're All Set</h1>
+    <p class="sub">Thank you for booking direct. A confirmation email is on its way to you with full check-in details.</p>
+  </div>
+
+  <!-- ============ BOOKING SUMMARY ============ -->
+  <div class="confirm-wrap">
+    <div class="book-card confirm-card">
+      <h2>Your Booking</h2>
+      <div id="confirm-status" class="confirm-loading">
+        <span class="spinner"></span> Loading your booking details…
+      </div>
+      <div id="confirm-breakdown" class="price-breakdown hidden"></div>
+    </div>
+  </div>
+
+  <script src="js/booking-confirmed.js"></script>
+</body>
+</html>
