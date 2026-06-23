@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Mersea Island Retreat</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/book.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="book-page admin-page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="book-header">
+    <div class="book-header-inner">
+      <a href="index.html" class="book-logo">
+        <span class="book-logo-mark">2CR</span>
+        <span class="book-logo-text">Mersea Island Retreat — Admin</span>
+      </a>
+      <a href="#" id="admin-logout" class="book-back-link hidden">Log out</a>
+    </div>
+  </header>
+
+  <!-- ============ LOGIN ============ -->
+  <div id="admin-login-screen" class="admin-login-wrap">
+    <div class="book-card admin-login-card">
+      <h2>Admin Login</h2>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" name="password" required autocomplete="current-password" />
+          <span class="field-error" id="admin-login-error"></span>
+        </div>
+        <button type="submit" class="book-pay-btn" id="admin-login-btn">
+          <span id="admin-login-btn-text">Log In</span>
+          <span class="spinner hidden" id="admin-login-spinner"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div id="admin-dashboard" class="admin-wrap hidden">
+
+    <!-- Summary -->
+    <section class="admin-summary-row" id="admin-summary-row">
+      <div class="book-card admin-stat">
+        <p class="admin-stat-label">Next Booking</p>
+        <p class="admin-stat-value" id="stat-next-booking">—</p>
+      </div>
+      <div class="book-card admin-stat">
+        <p class="admin-stat-label">Occupancy This Month</p>
+        <p class="admin-stat-value" id="stat-occupancy">—</p>
+      </div>
+      <div class="book-card admin-stat">
+        <p class="admin-stat-label">Revenue This Month (arrivals)</p>
+        <p class="admin-stat-value" id="stat-revenue">—</p>
+      </div>
+    </section>
+
+    <!-- Bookings table -->
+    <section class="book-card admin-section">
+      <h2>Upcoming Bookings</h2>
+      <div class="admin-table-scroll">
+        <table class="admin-table" id="bookings-table">
+          <thead>
+            <tr>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Guest</th>
+              <th>Guests</th>
+              <th>Status</th>
+              <th>Deposit Paid</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-tbody">
+            <tr><td colspan="6" class="admin-table-empty">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="admin-two-col">
+      <!-- Block dates -->
+      <section class="book-card admin-section">
+        <h2>Block Dates</h2>
+        <form id="block-dates-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="block-start">Start Date</label>
+              <input type="date" id="block-start" required />
+            </div>
+            <div class="form-group">
+              <label for="block-end">End Date (exclusive)</label>
+              <input type="date" id="block-end" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="block-reason">Reason (optional)</label>
+            <input type="text" id="block-reason" placeholder="Owner use, maintenance, etc." />
+          </div>
+          <button type="submit" class="book-pay-btn">Block Dates</button>
+          <p class="admin-form-status" id="block-dates-status"></p>
+        </form>
+      </section>
+
+      <!-- Pricing rules -->
+      <section class="book-card admin-section">
+        <h2>Pricing Rules</h2>
+        <form id="pricing-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="price-start">Start Date</label>
+              <input type="date" id="price-start" required />
+            </div>
+            <div class="form-group">
+              <label for="price-end">End Date</label>
+              <input type="date" id="price-end" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="price-rate">Price / Night (£)</label>
+              <input type="number" id="price-rate" min="1" step="1" required />
+            </div>
+            <div class="form-group">
+              <label for="price-minstay">Min Stay (nights)</label>
+              <input type="number" id="price-minstay" min="1" step="1" value="1" />
+            </div>
+          </div>
+          <button type="submit" class="book-pay-btn">Save Pricing Rule</button>
+          <p class="admin-form-status" id="pricing-status"></p>
+        </form>
+
+        <div class="admin-table-scroll admin-pricing-list">
+          <table class="admin-table" id="pricing-table">
+            <thead>
+              <tr>
+                <th>Start</th>
+                <th>End</th>
+                <th>£/night</th>
+                <th>Min Stay</th>
+              </tr>
+            </thead>
+            <tbody id="pricing-tbody">
+              <tr><td colspan="4" class="admin-table-empty">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

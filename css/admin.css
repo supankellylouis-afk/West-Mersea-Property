@@ -1,0 +1,164 @@
+/* ============================================================
+   Mersea Island Retreat — Admin Dashboard
+   Reuses book.css teal theme + card/form primitives.
+   ============================================================ */
+
+.admin-login-wrap {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+.admin-login-card h2 {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+
+.admin-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ---- Form primitives (shared with .book-form look) ---- */
+.admin-wrap .form-row,
+.admin-login-card .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.admin-wrap .form-group,
+.admin-login-card .form-group {
+  margin-bottom: 16px;
+}
+.admin-wrap label,
+.admin-login-card label {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 6px;
+}
+.admin-wrap input,
+.admin-login-card input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+  font-family: var(--ff-sans);
+  font-size: .9rem;
+  color: var(--ink);
+  background: var(--white);
+}
+.admin-wrap input:focus,
+.admin-login-card input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+.admin-wrap .book-pay-btn,
+.admin-login-card .book-pay-btn {
+  width: auto;
+  padding: 12px 28px;
+  margin-top: 4px;
+}
+.admin-form-status {
+  font-size: .82rem;
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+.admin-form-status.ok { color: #2e7d4f; }
+.admin-form-status.err { color: #c0392b; }
+
+/* ---- Summary stat cards ---- */
+.admin-summary-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.admin-stat { text-align: center; padding: 24px; }
+.admin-stat-label {
+  font-family: var(--ff-sans);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: .6rem;
+}
+.admin-stat-value {
+  font-family: var(--ff-serif);
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+
+/* ---- Section cards ---- */
+.admin-section { margin-bottom: 24px; }
+.admin-section h2 {
+  font-family: var(--ff-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+.admin-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ---- Tables ---- */
+.admin-table-scroll { overflow-x: auto; }
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}
+.admin-table th {
+  text-align: left;
+  font-family: var(--ff-sans);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--teal);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--sand);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.admin-table-empty {
+  text-align: center;
+  color: var(--ink-light);
+  padding: 24px 0 !important;
+  white-space: normal;
+}
+.admin-pricing-list { margin-top: 20px; }
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.status-pill.confirmed { background: #e3f3e9; color: #2e7d4f; }
+.status-pill.pending { background: #fdf6e3; color: #8a6d3b; }
+.status-pill.cancelled { background: #fbeded; color: #a33; }
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .admin-summary-row { grid-template-columns: 1fr; }
+  .admin-two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .admin-wrap .form-row,
+  .admin-login-card .form-row { grid-template-columns: 1fr; }
+}
