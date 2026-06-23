@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Stay — Mersea Island Retreat</title>
+  <meta name="description" content="Book your stay at Mersea Island Retreat direct — live availability, transparent pricing, and a secure £200 deposit via Stripe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/book.css" />
+</head>
+<body class="book-page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="book-header">
+    <div class="book-header-inner">
+      <a href="index.html" class="book-logo">
+        <span class="book-logo-mark">2CR</span>
+        <span class="book-logo-text">Mersea Island Retreat</span>
+      </a>
+      <a href="index.html" class="book-back-link">&larr; Back to property</a>
+    </div>
+  </header>
+
+  <!-- ============ INTRO ============ -->
+  <div class="book-intro">
+    <p class="eyebrow">Direct Booking</p>
+    <h1>Reserve Your Stay</h1>
+    <p class="sub">Check live availability, see transparent pricing, and secure your dates with a £200 deposit. Best rate guaranteed when you book direct.</p>
+  </div>
+
+  <!-- ============ BOOKING FORM + SUMMARY ============ -->
+  <div class="book-wrap">
+
+    <div class="book-card">
+      <h2>Your Details</h2>
+      <form class="book-form" id="book-form" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-checkin">Check-in*</label>
+            <input type="date" id="b-checkin" name="checkIn" required />
+            <span class="field-error" id="err-checkin"></span>
+          </div>
+          <div class="form-group">
+            <label for="b-checkout">Check-out*</label>
+            <input type="date" id="b-checkout" name="checkOut" required />
+            <span class="field-error" id="err-checkout"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="b-guests">Number of Guests* (max 8)</label>
+          <select id="b-guests" name="guests" required>
+            <option value="">Select</option>
+            <option value="1">1 guest</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+            <option value="7">7 guests</option>
+            <option value="8">8 guests</option>
+          </select>
+          <span class="field-error" id="err-guests"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-fname">First Name*</label>
+            <input type="text" id="b-fname" name="firstName" required placeholder="Jane" />
+            <span class="field-error" id="err-fname"></span>
+          </div>
+          <div class="form-group">
+            <label for="b-lname">Last Name*</label>
+            <input type="text" id="b-lname" name="lastName" required placeholder="Smith" />
+            <span class="field-error" id="err-lname"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="b-email">Email Address*</label>
+          <input type="email" id="b-email" name="email" required placeholder="jane@example.com" />
+          <span class="field-error" id="err-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="b-phone">Phone Number*</label>
+          <input type="tel" id="b-phone" name="phone" required placeholder="+44 7700 000000" />
+          <span class="field-error" id="err-phone"></span>
+        </div>
+
+        <button type="submit" class="book-pay-btn" id="book-pay-btn" disabled>
+          <span id="book-pay-btn-text">Pay Deposit — £200</span>
+          <span class="spinner hidden" id="book-pay-spinner"></span>
+        </button>
+        <p class="book-note">Your card is charged a £200 deposit today via Stripe to secure these dates. The remaining balance is due 8 weeks before arrival.</p>
+      </form>
+    </div>
+
+    <div class="book-card book-summary">
+      <h2>Price Summary</h2>
+      <div id="summary-status" class="summary-status"></div>
+      <div id="price-breakdown" class="price-breakdown">
+        <p class="pb-empty">Select your check-in and check-out dates to see live pricing.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/book.js"></script>
+</body>
+</html>

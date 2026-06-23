@@ -1,0 +1,262 @@
+/* ============================================================
+   Mersea Island Retreat — Booking Page
+   Deep teal nav, serif headlines, clean white body.
+   Reuses fonts/variables from css/style.css; page-specific
+   layout and the teal header live here.
+   ============================================================ */
+
+:root {
+  --teal:       #0e4849;
+  --teal-dark:  #0a3536;
+  --teal-light: #d9eceb;
+}
+
+body.book-page {
+  background: var(--white);
+}
+
+/* ---- Header ---- */
+.book-header {
+  background: var(--teal);
+  padding: 18px 0;
+}
+.book-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.book-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--white);
+}
+.book-logo-mark {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  letter-spacing: .04em;
+}
+.book-logo-text {
+  font-family: var(--ff-sans);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+}
+.book-back-link {
+  font-family: var(--ff-sans);
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: var(--white);
+  text-decoration: none;
+  opacity: .85;
+}
+.book-back-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ---- Hero strip ---- */
+.book-intro {
+  text-align: center;
+  padding: 56px 24px 36px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.book-intro p.eyebrow {
+  font-family: var(--ff-sans);
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: .8rem;
+}
+.book-intro h1 {
+  font-family: var(--ff-serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: .8rem;
+}
+.book-intro p.sub {
+  color: var(--ink-light);
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+/* ---- Layout ---- */
+.book-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.book-card {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+.book-card h2 {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+
+/* ---- Form ---- */
+.book-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.book-form .form-group {
+  margin-bottom: 18px;
+}
+.book-form label {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 6px;
+}
+.book-form input,
+.book-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+  font-family: var(--ff-sans);
+  font-size: .92rem;
+  color: var(--ink);
+  background: var(--white);
+}
+.book-form input:focus,
+.book-form select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+.book-form input.invalid,
+.book-form select.invalid {
+  border-color: #c0392b;
+}
+.field-error {
+  display: block;
+  font-size: .75rem;
+  color: #c0392b;
+  margin-top: 4px;
+  min-height: 1em;
+}
+
+.book-pay-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--ff-sans);
+  font-size: .85rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.book-pay-btn:hover:not(:disabled) { background: var(--teal-dark); }
+.book-pay-btn:disabled { background: var(--sand); color: var(--ink-light); cursor: not-allowed; }
+
+.book-note {
+  font-size: .78rem;
+  color: var(--ink-light);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+/* ---- Pricing summary panel ---- */
+.book-summary {
+  position: sticky;
+  top: 24px;
+}
+.summary-status {
+  font-size: .85rem;
+  margin-bottom: 18px;
+  min-height: 1.4em;
+}
+.summary-status.loading { color: var(--ink-light); display: flex; align-items: center; gap: 8px; }
+.summary-status.unavailable {
+  color: #a33; background: #fbeded; border: 1px solid #e9c8c8;
+  border-radius: var(--radius); padding: 10px 14px;
+}
+.summary-status.error {
+  color: #8a6d3b; background: #fdf6e3; border: 1px solid #f0e3bd;
+  border-radius: var(--radius); padding: 10px 14px;
+}
+.summary-status.available { color: #2e7d4f; }
+
+.price-breakdown { margin-top: 4px; }
+.pb-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--sand);
+  font-size: .88rem;
+  color: var(--ink-light);
+}
+.pb-row.total {
+  border-bottom: none;
+  border-top: 2px solid var(--teal);
+  margin-top: 4px;
+  padding-top: 14px;
+  font-family: var(--ff-serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.pb-row.deposit {
+  color: var(--teal);
+  font-weight: 500;
+}
+.pb-empty {
+  color: var(--ink-light);
+  font-size: .88rem;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid var(--sand);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hidden { display: none; }
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .book-wrap { grid-template-columns: 1fr; }
+  .book-summary { position: static; }
+}
+@media (max-width: 560px) {
+  .book-intro h1 { font-size: 1.85rem; }
+  .book-card { padding: 22px; }
+  .book-form .form-row { grid-template-columns: 1fr; }
+  .book-header-inner { padding: 0 16px; }
+  .book-logo-text { display: none; }
+}

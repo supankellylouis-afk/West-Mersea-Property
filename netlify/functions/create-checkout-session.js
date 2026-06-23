@@ -4,14 +4,14 @@
    Validates the requested dates against existing bookings and
    blocked dates, computes the total price from pricing_rules,
    creates a 'pending' booking row, and starts a Stripe Checkout
-   Session for the 30% deposit. The booking is only marked
+   Session for the flat deposit. The booking is only marked
    'confirmed' once Stripe confirms payment (see stripe-webhook.js). */
 
 const Stripe = require('stripe');
 const { supabaseAdmin } = require('../../lib/supabase');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const DEPOSIT_RATE = 0.3;
+const DEPOSIT_AMOUNT = 200; // flat deposit, GBP
 
 function nightsBetween(checkIn, checkOut) {
   return Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000);
@@ -85,7 +85,7 @@ exports.handler = async (event) => {
       return { statusCode: 400, body: JSON.stringify({ error: `Minimum stay is ${minStay} nights for these dates` }) };
     }
 
-    const deposit = Math.round(total * DEPOSIT_RATE * 100) / 100;
+    const deposit = DEPOSIT_AMOUNT;
 
     const { data: booking, error: insertError } = await supabaseAdmin
       .from('bookings')
@@ -119,8 +119,8 @@ exports.handler = async (event) => {
         quantity: 1,
       }],
       metadata: { booking_id: booking.id },
-      success_url: `${process.env.SITE_URL}/?booking=success`,
-      cancel_url: `${process.env.SITE_URL}/?booking=cancelled`,
+      success_url: `${process.env.SITE_URL}/book.html?booking=success`,
+      cancel_url: `${process.env.SITE_URL}/book.html?booking=cancelled`,
     });
 
     return {
