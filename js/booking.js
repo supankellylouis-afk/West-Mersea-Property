@@ -280,12 +280,16 @@ const Booking = (() => {
       dsNights.textContent   = `${nights} night${nights !== 1 ? 's' : ''}`;
       dsTotal.textContent    = `£${total.toLocaleString()}`;
       proceedBtn.disabled = false;
+      document.dispatchEvent(new CustomEvent('datesSelected', {
+        detail: { checkIn: toYMD(checkinDate), checkOut: toYMD(checkoutDate) },
+      }));
     } else {
       dsCheckin.textContent  = '—';
       dsCheckout.textContent = '—';
       dsNights.textContent   = '—';
       dsTotal.textContent    = '—';
       proceedBtn.disabled = true;
+      document.dispatchEvent(new CustomEvent('datesCleared'));
     }
   }
 

@@ -865,6 +865,69 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .ds-item { display: flex; flex-direction: column; gap: 3px; }
 .ds-item label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-light); }
 .ds-item span { font-family: var(--ff-serif); font-size: 1rem; color: var(--ink); }
+
+/* Live availability status (js/availability-check.js) */
+.availability-status {
+  font-size: .85rem;
+  margin-bottom: 20px;
+}
+.availability-status.loading {
+  color: var(--ink-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.avail-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--sand);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin .7s linear infinite;
+}
+.availability-status.unavailable {
+  color: #a33;
+  background: #fbeded;
+  border: 1px solid #e9c8c8;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.availability-status.error {
+  color: #8a6d3b;
+  background: #fdf6e3;
+  border: 1px solid #f0e3bd;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.availability-status.available {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.avail-ok { color: #2e7d4f; font-weight: 500; margin-bottom: 8px; }
+.avail-breakdown { max-height: 140px; overflow-y: auto; }
+.avail-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: .8rem;
+  color: var(--ink-light);
+  border-bottom: 1px solid var(--sand);
+}
+.avail-row:last-child { border-bottom: none; }
+.avail-tier { text-transform: uppercase; font-size: .65rem; letter-spacing: .08em; }
+.avail-tier.peak { color: var(--gold); }
+.avail-tier.off-peak { color: var(--ink-light); }
+.avail-total {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--sand);
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: var(--ink);
+}
 .ds-item.highlight span { color: var(--gold); font-size: 1.2rem; }
 
 .guest-form { display: flex; flex-direction: column; gap: 16px; }
