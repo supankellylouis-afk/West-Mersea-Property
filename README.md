@@ -44,3 +44,21 @@ Until real images are provided the site renders gradient SVG placeholders.
 Pure HTML/CSS/JS — no build step required.  
 Deploy to any static host: **GitHub Pages**, Netlify, Vercel, Cloudflare Pages.
 
+## Backend (in progress)
+
+A real direct-booking backend is being layered in alongside the static frontend:
+
+- **Database**: Supabase (Postgres). Schema: `supabase/schema.sql` — `bookings`, `blocked_dates`, `pricing_rules` tables with RLS locked down to the service role; only non-sensitive availability/pricing data is exposed to the public `anon` key.
+- **Server logic**: Netlify Functions in `netlify/functions/` — `get-availability`, `create-checkout-session`, `stripe-webhook`.
+- **Payments**: Stripe Checkout for the 30% deposit.
+- **Email**: Resend, sends the booking confirmation once Stripe confirms payment.
+
+### Setup
+
+1. Create a Supabase project, then run `supabase/schema.sql` in the SQL editor.
+2. Copy `.env.example` to `.env` and fill in Supabase, Stripe, and Resend keys.
+3. `npm install`, then `npm run dev` (uses `netlify dev`) to run the functions locally.
+4. In Netlify's dashboard, add the same environment variables and set the Stripe webhook endpoint to `/.netlify/functions/stripe-webhook`.
+
+The frontend (`js/booking.js`) still uses `localStorage` + `js/ota-bookings.js` for now — wiring it up to call `get-availability` / `create-checkout-session` instead is the next step.
+
